@@ -17,7 +17,7 @@ install_graylog() {
     echo "Install Dependency"
     sleep 1.5
     apt update -y
-    apt upgrade
+    apt upgrade -y
     apt install apt-transport-https gnupg2 uuid-runtime pwgen curl dirmngr -y
 
     echo "Install Java JDK"
