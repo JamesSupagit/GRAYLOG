@@ -82,7 +82,7 @@ action.auto_create_index: false" >> /etc/elasticsearch/elasticsearch.yml
 
     password_secret=$(pwgen -N 1 -s 96)
     # Display generated password
-    echo "Generated password: $password"
+    echo "Generated password: $password_secret"
     sleep 2.5
     clear
 
@@ -111,8 +111,8 @@ action.auto_create_index: false" >> /etc/elasticsearch/elasticsearch.yml
       proxy_set_header X-Forwarded-Host "$host";
       proxy_set_header X-Forwarded-Server "$host";
       proxy_set_header X-Forwarded-For "$proxy_add_x_forwarded_for";
-      proxy_set_header X-Graylog-Server-URL http://$GRAYLOG_HOST_IP/;
-      proxy_pass       http://$GRAYLOG_HOST_IP:9000;
+      proxy_set_header X-Graylog-Server-URL http://'$GRAYLOG_HOST_IP'/;
+      proxy_pass       http://'$GRAYLOG_HOST_IP':9000;
     }
 
     }' > /etc/nginx/sites-available/graylog.conf
@@ -123,6 +123,7 @@ action.auto_create_index: false" >> /etc/elasticsearch/elasticsearch.yml
     rm -rf /etc/nginx/sites-enabled/default
     systemctl restart nginx
     systemctl enable nginx
+    clear
     echo -e "${GREEN}Complete Install Graylog4.3${NC}"
 }
 
@@ -141,7 +142,7 @@ uninstall_graylog()
     apt remove --purge graylog-server -y
     clear
     echo "Warning!! Your system will rebooting now...."
-    echo 1.5
+    echo 3
     clear
     reboot
 }
@@ -151,28 +152,19 @@ upgrade_graylog()
     echo "Upgrade Graylog to V.5.2.5-1"
     sleep 2
     clear
+    read -p "Enter the IP address of the Graylog host again: " GRAYLOG_HOST_IP
     wget https://packages.graylog2.org/repo/packages/graylog-5.2-repository_latest.deb
     sudo dpkg -i graylog-5.2-repository_latest.deb
     sudo apt-get update -y
     sudo apt-cache policy graylog-server
-    sudo apt-get install graylog-server=5.2.5-1
+    sudo apt-get install graylog-server=5.2.5-1 -y
     clear
-    echo "${GREEN}Upgrade Graylog to V.5.2.5-1 Complete...${NC}"
     sleep 2
     systemctl daemon-reload
     systemctl start graylog-server
     systemctl enable graylog-server
     clear
 
-    echo "http_bind_address = $GRAYLOG_HOST_IP:9000" >> /etc/graylog/server/server.conf
-
-    systemctl daemon-reload
-    systemctl start graylog-server
-    systemctl enable graylog-server
-    clear
-    echo "Upgrade Graylog to V.5.2.5-1 Complete...."
-    sleep 2
-    clear
     echo "Comment Out Config"
     config_file="/etc/graylog/server/server.conf"
     # Comment out the password_secret line
@@ -182,16 +174,17 @@ upgrade_graylog()
 
     password_secret=$(pwgen -N 1 -s 96)
     # Display generated password
-    echo "Generated password: $password"
+    echo "Generated password: $password_secret"
     sleep 2.5
     clear
+
 
     echo "http_bind_address = $GRAYLOG_HOST_IP:9000" >> /etc/graylog/server/server.conf
     echo "password_secret = $password_secret" >> /etc/graylog/server/server.conf
     echo "root_password_sha2 = 2a97516c354b68848cdbd8f54a226a0a55b21ed138e207ad6c5cbb9c00aa5aea" >> /etc/graylog/server/server.conf
-
+    systemctl daemon-reload
     systemctl restart graylog-server
-
+    echo "${GREEN}Upgrade Graylog to V.5.2.5-1 Complete...${NC}"
     sleep 1.5
     clear
 
@@ -205,7 +198,7 @@ display_menu() {
     echo -e "${YELLOW}1. Install Graylog V.4.3${NC}"
     echo -e "${YELLOW}2. Uninstall Graylog v.4.3${NC}"
     echo -e "${YELLOW}3. Upgrade Graylog to V.5.2.5-1${NC}"
-    echo -e "${YELLOW}3. Exit${NC}"
+    echo -e "${YELLOW}4. Exit${NC}"
 }
 
 # Main function
