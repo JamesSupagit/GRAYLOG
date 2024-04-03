@@ -19,11 +19,16 @@ install_graylog() {
     apt update -y
     apt upgrade -y
     apt install apt-transport-https gnupg2 uuid-runtime pwgen curl dirmngr -y
+    clear
+
+
 
     echo "Install Java JDK"
     sleep 1.5
     apt install openjdk-11-jre-headless -y
     java -version
+    sleep 2
+    clear
 
     echo "Install Elasticsearch"
     sleep 1.5
@@ -32,7 +37,7 @@ install_graylog() {
     apt update -y
     apt install elasticsearch-oss -y
     echo "cluster.name: graylog
-    action.auto_create_index: false" >> /etc/elasticsearch/elasticsearch.yml
+action.auto_create_index: false" >> /etc/elasticsearch/elasticsearch.yml
     echo "check config Elasticsearch"
     cat /etc/elasticsearch/elasticsearch.yml
     sleep 3
@@ -40,6 +45,7 @@ install_graylog() {
     systemctl start elasticsearch
     systemctl enable elasticsearch
     curl -X GET http://localhost:9200
+    clear
 
 
     echo "Install MongoDB Server"
@@ -52,6 +58,7 @@ install_graylog() {
     mongod --version
     systemctl start mongod
     systemctl enable mongod
+    clear
 
     echo "Install Graylog4.3"
     sleep 1.5
@@ -74,10 +81,10 @@ install_graylog() {
 
     location /
     {
-      proxy_set_header Host $http_host;
-      proxy_set_header X-Forwarded-Host $host;
-      proxy_set_header X-Forwarded-Server $host;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header Host '$http_host';
+      proxy_set_header X-Forwarded-Host '$host';
+      proxy_set_header X-Forwarded-Server '$host';
+      proxy_set_header X-Forwarded-For '$proxy_add_x_forwarded_for';
       proxy_set_header X-Graylog-Server-URL http://$GRAYLOG_HOST_IP/;
       proxy_pass       http://$GRAYLOG_HOST_IP:9000;
     }
@@ -126,6 +133,9 @@ upgrade_graylog()
     clear
     echo "${GREEN}Upgrade Graylog to V.5.2.5-1 Complete...${NC}"
     sleep 2
+    systemctl daemon-reload
+    systemctl start graylog-server
+    systemctl enable graylog-server
     clear
     echo "############################
     # GRAYLOG CONFIGURATION FILE
@@ -183,7 +193,7 @@ upgrade_graylog()
     # Generate one by using for example: pwgen -N 1 -s 96
     # ATTENTION: This value must be the same on all Graylog nodes in the cluster.
     # Changing this value after installation will render all user sessions and encrypted values in the database invalid. (e.g. encrypted access tokens)
-    password_secret = DSi8TxelpPWw9sCjJW3ggwmEt9wq2VnorybBA3iyqWAXgDtbff3e1YpHDPmjbGNOpsrDN2LiNLCgsI1dqxAojhdZdYhMheny
+    password_secret = 'DSi8TxelpPWw9sCjJW3ggwmEt9wq2VnorybBA3iyqWAXgDtbff3e1YpHDPmjbGNOpsrDN2LiNLCgsI1dqxAojhdZdYhMheny'
 
     # The default root user is named 'admin'
     #root_username = admin
@@ -242,13 +252,13 @@ upgrade_graylog()
     #
     # The URI will be published in the cluster discovery APIs, so that other Graylog nodes will be able to find and connect to this Graylog node.
     #
-    # This configuration setting has to be used if this Graylog node is available on another network interface than $http_bind_address,
+    # This configuration setting has to be used if this Graylog node is available on another network interface than '$http_bind_address',
     # for example if the machine has multiple network interfaces or is behind a NAT gateway.
     #
-    # If $http_bind_address contains a wildcard IPv4 address (0.0.0.0), the first non-loopback IPv4 address of this machine will be used.
+    # If '$http_bind_address' contains a wildcard IPv4 address (0.0.0.0), the first non-loopback IPv4 address of this machine will be used.
     # This configuration setting *must not* contain a wildcard address!
     #
-    # Default: http://$http_bind_address/
+    # Default: http://'$http_bind_address'/
     #http_publish_uri = http://192.168.1.1:9000/
 
     #### External Graylog URI
@@ -256,13 +266,13 @@ upgrade_graylog()
     # The public URI of Graylog which will be used by the Graylog web interface to communicate with the Graylog REST API.
     #
     # The external Graylog URI usually has to be specified, if Graylog is running behind a reverse proxy or load-balancer
-    # and it will be used to generate URLs addressing entities in the Graylog REST API (see $http_bind_address).
+    # and it will be used to generate URLs addressing entities in the Graylog REST API (see '$http_bind_address').
     #
     # When using Graylog Collector, this URI will be used to receive heartbeat messages and must be accessible for all collectors.
     #
     # This setting can be overridden on a per-request basis with the "X-Graylog-Server-URL" HTTP request header.
     #
-    # Default: $http_publish_uri
+    # Default: '$http_publish_uri'
     #http_external_uri =
 
     #### Enable CORS headers for HTTP interface
@@ -883,7 +893,7 @@ display_menu() {
     echo -e "${YELLOW}Select an option:${NC}"
     echo -e "${YELLOW}1. Install Graylog V.4.3${NC}"
     echo -e "${YELLOW}2. Uninstall Graylog v.4.3${NC}"
-    echo -e "${YELLOW}2. Upgrade Graylog to V.5.2.5-1${NC}"
+    echo -e "${YELLOW}3. Upgrade Graylog to V.5.2.5-1${NC}"
     echo -e "${YELLOW}3. Exit${NC}"
 }
 
