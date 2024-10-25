@@ -1,5 +1,5 @@
 🚀 Graylog Server Installation Script
-Welcome to the Graylog Server Installation Script repository! This script simplifies the installation of Graylog on Linux, automating the setup and making it quick and hassle-free.
+Easily deploy Graylog on your Linux system using this automated Bash installation script. This repository is dedicated to helping you set up Graylog quickly, providing an efficient way to centralize and manage logs for system monitoring and analysis. Whether you're a Linux admin or a developer, this script is designed to save time and simplify the process.
 
 📋 Overview
 This repository contains a Bash shell script designed specifically for Linux systems to help you install Graylog with minimal effort. It’s ideal for system administrators, developers, and anyone looking to establish centralized logging and log management using Graylog.
@@ -33,3 +33,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ❤️ Contributions
 Contributions are welcome! Feel free to submit issues or pull requests to improve this installation script.
+
