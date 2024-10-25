@@ -5,24 +5,25 @@ This repository is dedicated to helping you set up Graylog quickly, providing an
 
 **📋 Overview**
 
-    This repository contains a Bash shell script specifically designed for Linux systems to help you install Graylog with minimal effort.
+This repository contains a Bash shell script specifically designed for Linux systems to help you install Graylog with minimal effort.
 It’s ideal for system administrators, developers, and anyone looking to establish centralized logging and log management using Graylog.
 
 **🎯 Features**
 
-    📌 Automated Installation: Get Graylog up and running in just a few commands.
-    🔧 Linux Compatibility: Works across popular Linux distributions.
-    🔐 Root Access Required: Script performs installation steps that require administrative privileges.
+   📌 Automated Installation: Get Graylog up and running in just a few commands.
+   🔧 Linux Compatibility: Works across popular Linux distributions.
+   🔐 Root Access Required: Script performs installation steps that require administrative privileges.
 
 **📦 Requirements**
 
-    Operating System: Linux (supports major distributions)
-    Permissions: Sudo/root access is required to complete the installation.
+   Operating System: Linux (supports major distributions)
+   Permissions: Sudo/root access is required to complete the installation.
 
 
 **🛠️ Installation Instructions**
 
-    Clone the Repository
+Clone the Repository
+
     git clone https://github.com/yourusername/graylog-install-script.git  
     cd graylog-install-script  
 
@@ -30,19 +31,20 @@ It’s ideal for system administrators, developers, and anyone looking to establ
 **Run the Installation Script**
 
     sudo ./install_graylog.sh  
-    Follow Prompts
+
+Follow Prompts
     The script will guide you through the final setup steps for Graylog.
 
 
 **📞 Contact**
 
-    If you have any questions or encounter any issues with the installation script, feel free to reach out.
+If you have any questions or encounter any issues with the installation script, feel free to reach out.
 Visit our website for more support: james200ok.com.
 
 **📜 License**
 
-    This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 **❤️ Contributions**
 
-    Contributions are welcome! Feel free to submit issues or pull requests to improve this installation script.
+ontributions are welcome! Feel free to submit issues or pull requests to improve this installation script.
