@@ -33,8 +33,8 @@ It’s ideal for system administrators, developers, and anyone looking to establ
 
 Clone the Repository
 
-    git clone https://github.com/yourusername/graylog-install-script.git  
-    cd graylog-install-script  
+    git clone https://github.com/JamesSupagit/GRAYLOG.git
+    cd GRAYLOG
 
 
 **Run the Installation Script**
