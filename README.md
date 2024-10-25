@@ -19,11 +19,12 @@ It’s ideal for system administrators, developers, and anyone looking to establ
    - 🔐 Root Access Required: Script performs installation steps that require administrative privileges.
 
 
+
 **📦 Requirements**
 
-   Operating System: Linux (supports major distributions)
+   - Operating System: Linux (supports major distributions)
    
-   Permissions: Sudo/root access is required to complete the installation.
+   - Permissions: Sudo/root access is required to complete the installation.
 
 
 
