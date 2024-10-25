@@ -6,13 +6,16 @@ This repository is dedicated to helping you set up Graylog quickly, providing an
 **📋 Overview**
 
 This repository contains a Bash shell script specifically designed for Linux systems to help you install Graylog with minimal effort.
+
 It’s ideal for system administrators, developers, and anyone looking to establish centralized logging and log management using Graylog.
 
 **🎯 Features**
 
-   📌 Automated Installation: Get Graylog up and running in just a few commands.
-   🔧 Linux Compatibility: Works across popular Linux distributions.
-   🔐 Root Access Required: Script performs installation steps that require administrative privileges.
+   - 📌 Automated Installation: Get Graylog up and running in just a few commands.
+   
+   - 🔧 Linux Compatibility: Works across popular Linux distributions.
+   
+   - 🔐 Root Access Required: Script performs installation steps that require administrative privileges.
 
 **📦 Requirements**
 
@@ -34,17 +37,21 @@ Clone the Repository
     sudo ./install_graylog.sh  
 
 Follow Prompts
-    The script will guide you through the final setup steps for Graylog.
+
+   The script will guide you through the final setup steps for Graylog.
 
 
 **📞 Contact**
 
 If you have any questions or encounter any issues with the installation script, feel free to reach out.
+
 Visit our website for more support: james200ok.com.
+
 
 **📜 License**
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
 
 **❤️ Contributions**
 
