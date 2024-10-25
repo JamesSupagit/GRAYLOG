@@ -24,6 +24,7 @@ It’s ideal for system administrators, developers, and anyone looking to establ
    Permissions: Sudo/root access is required to complete the installation.
 
 
+
 **🛠️ Installation Instructions**
 
 Clone the Repository
@@ -35,6 +36,7 @@ Clone the Repository
 **Run the Installation Script**
 
     sudo ./install_graylog.sh  
+
 
 Follow Prompts
 
