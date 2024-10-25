@@ -39,7 +39,7 @@ Clone the Repository
 
 **Run the Installation Script**
 
-    sudo ./install_graylog.sh  
+    sudo ./install.sh  
 
 
 Follow Prompts
